@@ -1,28 +1,40 @@
 version: 2.1
+
 jobs:
   lint:
     docker:
-      - image: hadolint/hadolint
+      - image: cimg/base:stable
     steps:
-      - checkout
+      - run:
+          name: Git Checkout Karsajobs
+          command: |
+            checkout
+            pwd
+      - run:
+          name: Install Hadolint
+          command: |
+            curl -sSL https://github.com/hadolint/hadolint/releases/download/v2.12.0/hadolint-Linux-x86_64 -o hadolint
+            chmod +x hadolint
       - run:
           name: Lint Dockerfile
-          command: hadolint --ignore DL4005 --ignore DL3008 Dockerfile
+          command: |
+            pwd
+            ./hadolint --ignore DL4005 --ignore DL3008 karsajobs/Dockerfile
+
   test:
     docker:
       - image: cimg/go:1.24.2
     steps:
       - checkout
-      # Replace this with a real test runner invocation
       - run:
           name: Run tests
           command: go test -v -short --count=1 $(go list ./...)
+
   build:
     docker:
       - image: cimg/base:2021.04
     steps:
       - checkout
-      # Replace this with steps to build a package, or executable
       - run:
           name: Build an artifact
           command: ./build_push_image_karsajobs.sh
