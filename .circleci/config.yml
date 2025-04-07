@@ -42,14 +42,22 @@ jobs:
 workflows:
   karsajobs:
     jobs:
-      - lint
+      - lint:
+          filters:
+            branches:
+              only:
+                - karsajobs
       - test:
           requires:
             - lint
+          filters:
+            branches:
+              only:
+                - karsajobs
       - build:
           requires:
             - test
-    filters:
-      branches:
-        only:
-          - karsajobs
+          filters:
+            branches:
+              only:
+                - karsajobs
