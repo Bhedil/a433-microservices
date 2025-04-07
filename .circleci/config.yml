@@ -7,9 +7,6 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Git Checkout Karsajobs
-          command: pwd
-      - run:
           name: Install Hadolint
           command: |
             curl -sSL https://github.com/hadolint/hadolint/releases/download/v2.12.0/hadolint-Linux-x86_64 -o hadolint
@@ -17,6 +14,8 @@ jobs:
       - run:
           name: Lint Dockerfile
           command: |
+            git fetch origin karsajobs
+            git checkout karsajobs
             pwd
             ./hadolint --ignore DL4005 --ignore DL3008 karsajobs/Dockerfile
 
