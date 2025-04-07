@@ -14,7 +14,13 @@ jobs:
       - run:
           name: Lint Dockerfile
           command: |
-            ./hadolint --ignore DL4005 --ignore DL3008 Dockerfile
+            echo "Running Hadolint on Dockerfile..."
+            if ./hadolint --ignore DL4005 --ignore DL3008 Dockerfile; then
+              echo "✅ Dockerfile passed linting!"
+            else
+              echo "❌ Dockerfile failed linting."
+              exit 1
+            fi
 
   build:
     machine: true
