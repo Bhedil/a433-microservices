@@ -41,23 +41,16 @@ jobs:
 
 workflows:
   karsajobs:
+    when:
+      condition:
+        matches:
+          pattern: "karsajobs"
+          value: << pipeline.git.branch >>
     jobs:
-      - lint:
-          filters:
-            branches:
-              only:
-                - karsajobs
+      - lint
       - test:
           requires:
             - lint
-          filters:
-            branches:
-              only:
-                - karsajobs
-      - build:
+      - build_BE:
           requires:
             - test
-          filters:
-            branches:
-              only:
-                - karsajobs
