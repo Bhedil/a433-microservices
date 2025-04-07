@@ -51,6 +51,6 @@ workflows:
       - test:
           requires:
             - lint
-      - build_BE:
+      - build:
           requires:
             - test
