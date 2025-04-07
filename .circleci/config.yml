@@ -32,16 +32,13 @@ jobs:
 
 workflows:
   karsajobs-ui:
+    when:
+      condition:
+        matches:
+          pattern: "karsajobs-ui"
+          value: << pipeline.git.branch >>
     jobs:
-      - lint:
-          filters:
-            branches:
-              only:
-                - karsajobs-ui
-      - build:
+      - lint
+      - build_FE:
           requires:
             - lint
-          filters:
-            branches:
-              only:
-                - karsajobs-ui
