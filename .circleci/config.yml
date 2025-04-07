@@ -39,6 +39,6 @@ workflows:
           value: << pipeline.git.branch >>
     jobs:
       - lint
-      - build_FE:
+      - build:
           requires:
             - lint
