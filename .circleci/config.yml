@@ -5,11 +5,9 @@ jobs:
       - image: hadolint/hadolint
     steps:
       - checkout
-      - docker/hadolint:
-          dockerfiles: Dockerfile
-          executor-class: medium
-          hadolint-tag: 2.2.0-debian
-          ignore-rules: DL4005,DL3008
+      - run:
+          name: Lint Dockerfile
+          command: hadolint --ignore DL4005 --ignore DL3008 Dockerfile
   test:
     docker:
       - image: cimg/go:1.24.2
