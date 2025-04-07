@@ -2,7 +2,7 @@
 docker build -t bhedil/karsajobs:latest .
 
 #Mengubah nama image sesuai dengan github packages dengan tag latest
-docker tag item-app:v1 ghcr.io/bhedil/bhedil/karsajobs:latest
+docker tag bhedil/karsajobs:latest ghcr.io/bhedil/bhedil/karsajobs:latest
 
 #login ke github packages
 echo $CR_PAT | docker login ghcr.io -u Bhedil --password-stdin
