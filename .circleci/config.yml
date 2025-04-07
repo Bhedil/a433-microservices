@@ -5,11 +5,10 @@ jobs:
     docker:
       - image: cimg/base:stable
     steps:
+      - checkout
       - run:
           name: Git Checkout Karsajobs
-          command: |
-            checkout
-            pwd
+          command: pwd
       - run:
           name: Install Hadolint
           command: |
