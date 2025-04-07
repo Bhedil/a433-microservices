@@ -14,9 +14,6 @@ jobs:
       - run:
           name: Lint Dockerfile
           command: |
-            git fetch origin karsajobs
-            git checkout karsajobs
-            pwd
             ./hadolint --ignore DL4005 --ignore DL3008 Dockerfile
 
   test:
