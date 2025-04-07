@@ -17,7 +17,7 @@ jobs:
             git fetch origin karsajobs
             git checkout karsajobs
             pwd
-            ./hadolint --ignore DL4005 --ignore DL3008 karsajobs/Dockerfile
+            ./hadolint --ignore DL4005 --ignore DL3008 Dockerfile
 
   test:
     docker:
