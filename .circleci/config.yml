@@ -31,9 +31,17 @@ jobs:
           command: ./build_push_image_karsajobs_ui.sh
 
 workflows:
-  karsajobs:
+  karsajobs-ui:
     jobs:
-      - lint
+      - lint:
+          filters:
+            branches:
+              only:
+                - karsajobs-ui
       - build:
           requires:
-            - lint
+            - test
+          filters:
+            branches:
+              only:
+                - karsajobs-ui
